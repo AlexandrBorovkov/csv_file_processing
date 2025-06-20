@@ -12,19 +12,19 @@ def get_file_data(file_path):
     except FileNotFoundError:
         return None
 
-def process_the_file(parameters):
-    data = get_file_data(parameters.file_path)
+def process_the_file(file_path, filter_condition, aggregate_condition):
+    data = get_file_data(file_path)
     if data is None:
-        return 'Файл не найден'
-    if parameters.where and parameters.aggregate:
-        filtered_data = filter_the_data(data, parameters.where)
-        aggregation_result = aggregate_data(filtered_data, parameters.aggregate)
+        return None
+    if filter_condition and aggregate_condition:
+        filtered_data = filter_the_data(data, filter_condition)
+        aggregation_result = aggregate_data(filtered_data, aggregate_condition)
         return aggregation_result
-    elif parameters.where:
-        filtered_data = filter_the_data(data, parameters.where)
+    elif filter_condition:
+        filtered_data = filter_the_data(data, filter_condition)
         return filtered_data
-    elif parameters.aggregate:
-        aggregation_result = aggregate_data(data, parameters.aggregate)
+    elif aggregate_condition:
+        aggregation_result = aggregate_data(data, aggregate_condition)
         return aggregation_result
     else:
         return data

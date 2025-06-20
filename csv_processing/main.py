@@ -9,7 +9,11 @@ from csv_processing.src.core import process_the_file
 
 def main():
     parameters = accept_input_parameters()
-    result = process_the_file(parameters)
+    result = process_the_file(
+        parameters.file_path,
+        parameters.where,
+        parameters.aggregate
+    )
     if isinstance(result, dict):
         print(tabulate([result], headers="keys", tablefmt="grid"))
     elif isinstance(result, list):
