@@ -10,10 +10,11 @@ def aggregate_data(data, aggregate_condition):
 
         match func:
             case 'avg':
-                return sum(numbers) / len(numbers)
+                result = sum(numbers) / len(numbers)
             case 'min':
-                return min(numbers)
+                result = min(numbers)
             case 'max':
-                return max(numbers)
+                result = max(numbers)
+        return {func: result}
     except Exception:
         return None
